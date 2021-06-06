@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+      include partials/header
+
+  body.login
+    .contenedor-formulario
+      h1= nombrePagina
+
+      if locals.mensajes 
+        .alertas
+          each categoria in Object.keys(locals.mensajes)
+            each error in mensajes[categoria]
+              .alerta(class=`${categoria}`)
+                p= error
+
+      .contenedor-formulario
+        form.caja-login(method="POST" action="/restablecer")
+          .campo
+            label(form="email") Email:
+            input(type="text" name="email" placeholder="Tu Email")
+
+          .campo.enviar
+            input.boton(type="submit" value="Restablecer Contraseña")
+
+          .campo
+            a(href="/iniciar-sesion")  Ya lo recordé, volver al Login
