@@ -42,7 +42,7 @@ exports.enviarToken = async (req, res) => {
 
   await usuario.save()
 
-  const resetUrl = `${req.headers.referer}/${usuario.token}`
+  const resetUrl = `${req.headers.origin}/${usuario.token}`
 
   await enviarEmail.enviar({
     usuario,

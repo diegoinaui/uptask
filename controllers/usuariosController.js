@@ -14,7 +14,7 @@ exports.crearCuenta = async (req, res) => {
   try {
     await Usuarios.create({ email, password })
 
-    const confirmarUrl = `${req.headers.host}/confirmar/${email}`
+    const confirmarUrl = `${req.headers.origin}/confirmar/${email}`
 
     const usuario = {
       email
@@ -29,7 +29,6 @@ exports.crearCuenta = async (req, res) => {
 
     res.redirect('/iniciar-sesion')
   } catch (error) {
-    console.log(error)
     req.flash(
       'error',
       error.errors.map(error => error.message)
